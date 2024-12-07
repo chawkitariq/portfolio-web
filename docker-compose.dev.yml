@@ -1,6 +1,6 @@
 services:
   web:
-    image: node:22.12.0
+    image: node:20.18.1
     user: node
     working_dir: /home/node/web
     volumes:
