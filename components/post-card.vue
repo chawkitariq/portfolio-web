@@ -31,11 +31,10 @@
 <script setup lang="ts">
 import Badge from './ui/badge/Badge.vue';
 
-const { imgSrc, imgAlt = "", tags, subTitle, title, url } = defineProps<{
+const { imgSrc, imgAlt = "", tags, title, url } = defineProps<{
     imgSrc?: string,
     imgAlt?: string,
     tags?: string[],
-    subTitle?: string,
     title?: string,
     url?: string,
 }>()

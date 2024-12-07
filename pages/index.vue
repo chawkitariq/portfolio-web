@@ -8,18 +8,22 @@
     </h2>
   </section>
 
-  <div class="bg-zinc-50">
+  <div v-if="services?.length" class="bg-zinc-50">
     <div class="container py-48">
       <NuxtLayout name="section" title="Services" subTitle="Mes Compétences">
         <ul class="grid grid-cols-3 gap-12">
-          <li v-for="i in [0, 1, 2, 3, 4]">
-            <BasicCard title="Backend NodeJS (NestJS)">
-              <p class="leading-7">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure cumque eum ex laboriosam, voluptate ipsam.
-                Dolores enim atque laborum tempora. Quisquam dolor minima earum dolore voluptates quia quaerat fugit
-                facilis!
-              </p>
-            </BasicCard>
+          <li v-for="service in services">
+            <Card>
+              <CardHeader class="grid gap-4">
+                <div v-if="service.icon" v-html="service.icon"></div>
+                <CardTitle>{{ service.title }}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p class="leading-7">
+                  {{ service.description }}
+                </p>
+              </CardContent>
+            </Card>
           </li>
         </ul>
       </NuxtLayout>
@@ -43,21 +47,35 @@
     </NuxtLayout>
   </div>
 
-  <div class="">
+  <div v-if="socialNetworks?.length">
     <div class="container py-48">
       <NuxtLayout name="section" title="Me retrouver" subTitle="Réseaux sociaux">
-        <div class="grid grid-cols-3 gap-12">
-          <a v-for="url in [1, 2, 3]" href="https://github.com/chawkitariq" target="_blank">
-            <BasicCard title="Github" description="github.com/chawkitariq" />
-          </a>
-        </div>
+        <ul class="grid grid-cols-3 gap-12">
+          <li v-for="socialNetwork in socialNetworks">
+            <a :href="socialNetwork.url" target="_blank">
+              <Card>
+                <CardHeader class="flex flex-row items-center justify-between">
+                  <div class="grid gap-2">
+                    <CardTitle>{{ socialNetwork.title }}</CardTitle>
+                    <CardDescription>{{ socialNetwork.description }}</CardDescription>
+                  </div>
+                </CardHeader>
+              </Card>
+            </a>
+          </li>
+        </ul>
       </NuxtLayout>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { TService, TSocialNetwork } from '~/types';
+
 definePageMeta({
   layout: 'default'
 })
+
+const services: TService[] = []
+const socialNetworks: TSocialNetwork[] = []
 </script>
