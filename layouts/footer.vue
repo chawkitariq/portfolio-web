@@ -1,5 +1,5 @@
 <template>
-    <header>
-        <h1>Footer</h1>
-    </header>
+    <footer class="container text-center py-12">
+        <p>Intégration et développement Tariq</p>
+    </footer>
 </template>
