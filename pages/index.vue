@@ -1,5 +1,5 @@
 <template>
-  <section class="container grid place-items-center p-96">
+  <section class="container grid place-items-center py-96">
     <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
       CHAWKI Tariq
     </h1>
