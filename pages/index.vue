@@ -11,9 +11,9 @@
   <div v-if="services?.length" class="bg-zinc-50">
     <div class="container py-48">
       <NuxtLayout name="section" title="Services" subTitle="Mes Compétences">
-        <ul class="grid grid-cols-3 gap-12">
+        <ul class="grid grid-cols-3 auto-rows-fr gap-12">
           <li v-for="service in services">
-            <Card>
+            <Card class="h-full">
               <CardHeader class="grid gap-4">
                 <div v-if="service.icon" v-html="service.icon"></div>
                 <CardTitle>{{ service.title }}</CardTitle>
@@ -54,11 +54,12 @@
           <li v-for="socialNetwork in socialNetworks">
             <a :href="socialNetwork.url" target="_blank">
               <Card>
-                <CardHeader class="flex flex-row items-center justify-between">
+                <CardHeader class="flex flex-row items-center justify-between space-y-0">
                   <div class="grid gap-2">
                     <CardTitle>{{ socialNetwork.title }}</CardTitle>
                     <CardDescription>{{ socialNetwork.description }}</CardDescription>
                   </div>
+                  <div v-if="socialNetwork.icon" v-html="socialNetwork.icon"></div>
                 </CardHeader>
               </Card>
             </a>
