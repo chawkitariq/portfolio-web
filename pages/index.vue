@@ -70,12 +70,10 @@
 </template>
 
 <script setup lang="ts">
-import type { TService, TSocialNetwork } from '~/types';
+import services from '~/data/services';
+import socialNetworks from '~/data/social-networks';
 
 definePageMeta({
   layout: 'default'
 })
-
-const services: TService[] = []
-const socialNetworks: TSocialNetwork[] = []
 </script>
