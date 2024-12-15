@@ -1,9 +1,9 @@
 <template>
   <section class="container grid place-items-center py-96">
-    <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+    <h1 class="text-center scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
       CHAWKI Tariq
     </h1>
-    <h2 class="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+    <h2 class="text-center scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
       Développeur Full-Stack
     </h2>
   </section>
@@ -11,7 +11,7 @@
   <div v-if="services?.length" class="bg-zinc-50">
     <div class="container py-48">
       <NuxtLayout name="section" title="Services" subTitle="Mes Compétences">
-        <ul class="grid grid-cols-3 auto-rows-fr gap-12">
+        <ul class="grid sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr gap-12">
           <li v-for="service in services">
             <Card class="h-full">
               <CardHeader class="grid gap-4">
@@ -50,7 +50,7 @@
   <div v-if="socialNetworks?.length">
     <div class="container py-48">
       <NuxtLayout name="section" title="Me retrouver" subTitle="Réseaux sociaux">
-        <ul class="grid grid-cols-3 gap-12">
+        <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12">
           <li v-for="socialNetwork in socialNetworks">
             <a :href="socialNetwork.url" target="_blank">
               <Card class="hover:border-zinc-500 transition">
