@@ -1,5 +1,5 @@
 <template>
-    <header class="container flex items-center justify-between py-4">
+    <header class="container flex items-center justify-between py-4 sticky top-0">
         <h1 class="font-bold text-xs">
             <NuxtLink to="/">
                 CHAWKI Tariq

@@ -10,3 +10,8 @@ export type TSocialNetwork = {
   description?: string;
   icon?: string;
 };
+export type TContactPayload = {
+  email: string;
+  service: string;
+  message: string;
+};
