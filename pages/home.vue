@@ -53,7 +53,7 @@
         <ul class="grid grid-cols-3 gap-12">
           <li v-for="socialNetwork in socialNetworks">
             <a :href="socialNetwork.url" target="_blank">
-              <Card>
+              <Card class="hover:border-zinc-500 transition">
                 <CardHeader class="flex flex-row items-center justify-between space-y-0">
                   <div class="grid gap-2">
                     <CardTitle>{{ socialNetwork.title }}</CardTitle>
@@ -68,13 +68,16 @@
       </NuxtLayout>
     </div>
   </div>
+  <NuxtPage />
 </template>
 
 <script setup lang="ts">
-import services from '~/data/services';
-import socialNetworks from '~/data/social-networks';
+import services from '~/datas/services';
+import socialNetworks from '~/datas/social-networks';
 
 definePageMeta({
-  layout: 'default'
+  layout: 'default',
+  name: "home",
+  path: '/'
 })
 </script>
