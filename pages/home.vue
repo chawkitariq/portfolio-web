@@ -72,8 +72,8 @@
 </template>
 
 <script setup lang="ts">
-import services from '~/datas/services';
-import socialNetworks from '~/datas/social-networks';
+import services from '~/data/services';
+import socialNetworks from '~/data/social-networks';
 
 definePageMeta({
   layout: 'default',

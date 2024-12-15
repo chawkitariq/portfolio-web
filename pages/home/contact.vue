@@ -45,7 +45,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import { Textarea } from '~/components/ui/textarea';
-import services from '~/datas/services';
+import services from '~/data/services';
 
 definePageMeta({
     layout: 'default',
