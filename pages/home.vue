@@ -1,16 +1,18 @@
 <template>
-  <section class="container grid place-items-center py-96">
-    <h1 class="text-center scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-      CHAWKI Tariq
-    </h1>
-    <h2 class="text-center scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
-      Développeur Full-Stack
-    </h2>
+  <section class="container grid place-items-center h-screen">
+    <div>
+      <h1 class="text-center scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+        CHAWKI Tariq
+      </h1>
+      <h2 class="text-center scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+        Développeur Full-Stack
+      </h2>
+    </div>
   </section>
 
   <div v-if="services?.length" class="bg-zinc-50">
     <div class="container py-48">
-      <NuxtLayout name="section" title="Services" subTitle="Mes Compétences">
+      <NuxtLayout name="section" title="Services" subTitle="Mes compétences">
         <ul class="grid sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr gap-12">
           <li v-for="service in services">
             <Card class="h-full">
@@ -50,10 +52,10 @@
   <div v-if="socialNetworks?.length">
     <div class="container py-48">
       <NuxtLayout name="section" title="Me retrouver" subTitle="Réseaux sociaux">
-        <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        <ul class="grid sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr gap-12">
           <li v-for="socialNetwork in socialNetworks">
             <a :href="socialNetwork.url" target="_blank">
-              <Card class="hover:border-zinc-500 transition">
+              <Card class="h-full hover:border-zinc-500 transition">
                 <CardHeader class="flex flex-row items-center justify-between space-y-0">
                   <div class="grid gap-2">
                     <CardTitle>{{ socialNetwork.title }}</CardTitle>
@@ -78,6 +80,6 @@ import socialNetworks from '~/data/social-networks';
 definePageMeta({
   layout: 'default',
   name: "home",
-  path: '/'
+  path: '/',
 })
 </script>

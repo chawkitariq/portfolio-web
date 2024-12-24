@@ -24,7 +24,7 @@
                         <Select v-bind="componentField">
                             <FormControl>
                                 <SelectTrigger>
-                                    <SelectValue placeholder="Séléctionner un service" />
+                                    <SelectValue placeholder="Sélectionner un service" />
                                 </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -54,7 +54,8 @@
                 <Button variant="outline" :onclick="handleCloseDialog">
                     Annuler
                 </Button>
-                <Button :onclick="requestSubmit">
+                <Button :onclick="requestSubmit" :disabled="isEmailSendLoading">
+                    <Loader2 v-if="isEmailSendLoading" class="animate-spin" />
                     Envoyer
                 </Button>
             </DialogFooter>
@@ -70,12 +71,8 @@ import { useForm } from 'vee-validate';
 import { object, string } from 'zod';
 import type { TContactPayload } from '~/types';
 import { useToast } from '~/components/ui/toast';
-
-definePageMeta({
-    layout: 'default',
-    name: "contact",
-    path: '/contact'
-})
+import { ref } from 'vue'
+import { Loader2 } from 'lucide-vue-next';
 
 const validationSchema = toTypedSchema(object({
     email: string({ required_error: "Obligatoire" })
@@ -94,6 +91,12 @@ const form = useForm<TContactPayload>({
     validationSchema: validationSchema,
 })
 
+const formRef = useTemplateRef<HTMLFormElement>('form-ref')
+
+const handleCloseDialog = async () => await navigateTo({ name: 'home' })
+const handleInteractOutside = (e: Event) => e.preventDefault()
+const requestSubmit = () => formRef?.value?.requestSubmit()
+
 const runtimeConfig = useRuntimeConfig()
 
 const emailjsPublicKey = runtimeConfig.public.emailjsPublicKey
@@ -110,11 +113,13 @@ emailjs.init({
 
 const { toast } = useToast()
 
-const formRef = useTemplateRef<HTMLFormElement>('form-ref')
+const isEmailSendLoading = ref(false)
 
 const handleSubmit = form.handleSubmit(async (payload) => {
+    isEmailSendLoading.value = true
     try {
         await emailjs.send(emailjsServiceId, emailjsTemplateId, payload);
+        await handleCloseDialog()
         toast({
             variant: 'default',
             title: 'Email envoyé avec succès',
@@ -124,13 +129,16 @@ const handleSubmit = form.handleSubmit(async (payload) => {
         toast({
             variant: 'destructive',
             title: "Erreur d'envoi",
-            description: "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer.",
+            description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
         });
+    } finally {
+        isEmailSendLoading.value = false
     }
-    formRef?.value?.reset()
 })
 
-const handleCloseDialog = async () => await navigateTo('/')
-const handleInteractOutside = (e: Event) => e.preventDefault()
-const requestSubmit = () => formRef?.value?.requestSubmit()
+definePageMeta({
+    layout: 'default',
+    name: "contact",
+    path: '/contact'
+})
 </script>
