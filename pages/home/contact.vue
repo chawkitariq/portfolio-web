@@ -73,6 +73,7 @@ import type { TContactPayload } from '~/types';
 import { useToast } from '~/components/ui/toast';
 import { ref } from 'vue'
 import { Loader2 } from 'lucide-vue-next';
+import sanitize from 'sanitize-html'
 
 const validationSchema = toTypedSchema(object({
     email: string({ required_error: "Obligatoire" })
@@ -85,7 +86,11 @@ const validationSchema = toTypedSchema(object({
         .max(2500, { message: 'Le message ne peut pas dépasser 2500 caractères' })
         .min(50, { message: 'Le message doit comporter au moins 50 caractères' })
     ,
-}).required());
+}).required().transform(v => ({
+    email: sanitize(v.email),
+    service: sanitize(v.service),
+    message: sanitize(v.message),
+})));
 
 const form = useForm<TContactPayload>({
     validationSchema: validationSchema,
