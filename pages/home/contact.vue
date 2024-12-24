@@ -1,6 +1,7 @@
 <template>
     <Dialog :open="true" v-on:update:open="handleCloseDialog">
-        <DialogContent v-on:interact-outside="handleInteractOutside">
+        <DialogContent v-on:interact-outside="handleInteractOutside" class="h-[90vh] md:min-w-[650px] overflow-hidden">
+
             <DialogHeader>
                 <DialogTitle>Me Contacter</DialogTitle>
                 <DialogDescription>Merci de détailler votre demande afin que je puisse y répondre rapidement.
@@ -12,7 +13,7 @@
                     <FormItem>
                         <FormLabel>Adresse mail</FormLabel>
                         <FormControl>
-                            <Input type="text" v-bind="componentField" />
+                            <Input type="email" v-bind="componentField" />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -43,7 +44,7 @@
                     <FormItem>
                         <FormLabel>Message</FormLabel>
                         <FormControl>
-                            <Textarea v-bind="componentField" rows="20" />
+                            <Textarea v-bind="componentField" rows="20" class="resize-none" />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -59,6 +60,7 @@
                     Envoyer
                 </Button>
             </DialogFooter>
+
         </DialogContent>
     </Dialog>
 </template>
@@ -83,7 +85,7 @@ const validationSchema = toTypedSchema(object({
         .trim(),
     message: string({ required_error: "Obligatoire" })
         .trim()
-        .max(2500, { message: 'Le message ne peut pas dépasser 2500 caractères' })
+        .max(10000, { message: 'Le message ne peut pas dépasser 10000 caractères' })
         .min(50, { message: 'Le message doit comporter au moins 50 caractères' })
     ,
 }).required().transform(v => ({
