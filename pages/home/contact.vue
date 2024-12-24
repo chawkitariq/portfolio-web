@@ -1,11 +1,11 @@
 <template>
     <Dialog :open="true" v-on:update:open="handleCloseDialog">
-        <DialogContent v-on:interact-outside="handleInteractOutside" class="h-[90vh] md:min-w-[650px] overflow-hidden">
+        <DialogContent v-on:interact-outside="handleInteractOutside" class="md:min-w-[650px]">
 
             <DialogHeader>
                 <DialogTitle>Me Contacter</DialogTitle>
-                <DialogDescription>Merci de détailler votre demande afin que je puisse y répondre rapidement.
-                </DialogDescription>
+                <DialogDescription>Merci de me donner un maximum de détails sur votre projet pour évaluer la charge de
+                    travail et vous fournir un premier chiffrage plus précis</DialogDescription>
             </DialogHeader>
 
             <form ref="form-ref" @submit="handleSubmit" novalidate class="grid gap-4">
@@ -19,7 +19,7 @@
                     </FormItem>
                 </FormField>
 
-                <FormField v-slot="{ componentField }" name="service">
+                <!-- <FormField v-if="false" v-slot="{ componentField }" name="service">
                     <FormItem>
                         <FormLabel>Service</FormLabel>
                         <Select v-bind="componentField">
@@ -38,13 +38,13 @@
                         </Select>
                         <FormMessage />
                     </FormItem>
-                </FormField>
+                </FormField> -->
 
                 <FormField v-slot="{ componentField }" name="message">
                     <FormItem>
                         <FormLabel>Message</FormLabel>
                         <FormControl>
-                            <Textarea v-bind="componentField" rows="20" class="resize-none" />
+                            <Textarea v-bind="componentField" rows="25" class="resize-none" />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -81,8 +81,8 @@ const validationSchema = toTypedSchema(object({
     email: string({ required_error: "Obligatoire" })
         .trim()
         .email("Adresse mail invalide"),
-    service: string({ required_error: "Obligatoire" })
-        .trim(),
+    // service: string({ required_error: "Obligatoire" })
+    //     .trim(),
     message: string({ required_error: "Obligatoire" })
         .trim()
         .max(10000, { message: 'Le message ne peut pas dépasser 10000 caractères' })
@@ -90,7 +90,7 @@ const validationSchema = toTypedSchema(object({
     ,
 }).required().transform(v => ({
     email: sanitize(v.email),
-    service: sanitize(v.service),
+    // service: sanitize(v.service),
     message: sanitize(v.message),
 })));
 
