@@ -110,6 +110,10 @@ const emailjsPublicKey = runtimeConfig.public.emailjsPublicKey
 const emailjsServiceId = runtimeConfig.public.emailjsServiceId
 const emailjsTemplateId = runtimeConfig.public.emailjsTemplateId
 
+console.log(emailjsPublicKey)
+console.log(emailjsServiceId)
+console.log(emailjsTemplateId)
+
 emailjs.init({
     publicKey: emailjsPublicKey,
     blockHeadless: true,
@@ -133,6 +137,7 @@ const handleSubmit = form.handleSubmit(async (payload) => {
             description: 'Votre message a été envoyé avec succès. Nous vous répondrons sous peu.',
         });
     } catch (error) {
+        console.log(error)
         toast({
             variant: 'destructive',
             title: "Erreur d'envoi",
