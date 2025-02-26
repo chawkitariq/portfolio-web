@@ -8,8 +8,8 @@ Start the development server on `http://localhost:3000`:
 
 ```bash
 # Run server
-docker compose -f docker-compose.dev.yml up
+docker compose up
 
 # Stop server
-docker compose -f docker-compose.dev.yml down
+docker compose down
 ```
