@@ -1,11 +1,8 @@
 services:
   web:
-    image: node:20.18.1
-    user: node
-    working_dir: /home/node/web
+    build: .
     volumes:
       - "./:/home/node/web"
     ports:
       - "3000:3000"
-    entrypoint: ["./docker-entrypoint.sh"]
     command: "npm run dev"
